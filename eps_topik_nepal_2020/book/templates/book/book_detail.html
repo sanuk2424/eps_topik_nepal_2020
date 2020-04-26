@@ -1,0 +1,107 @@
+{% extends 'book/header.html' %}
+{% block title%} {{book.title}}{% endblock %}
+
+{% block body%}
+
+      <div class="card">
+  <div class="card-header text-center text-info">
+    <h1 class="card-title">{{ book.title }}</h1>
+  </div>
+          <div class="row">
+               <div class="col">
+                   <a class="nav-link btn btn-success" href="/book">Book's Chapters </a>
+              </div>
+
+          <div class="col">
+              {% if book.pdf_file != "" %}
+              <a class="nav-link btn btn-primary" href = '/book/pdf_view/{{file_name}}'>{{file_name}} pdf book</a>
+              {% endif %}
+
+          </div>
+
+
+      </div>
+          <hr>
+          <h1 class="text-center nav-link btn btn-secondary">Audio Files</h1>
+          {% load static %}
+  <div class="card-body">
+
+
+    <p class="card-text">
+      <div class="row">
+
+      {% for a in audio%}
+          <div class="col-md-4">
+              <blockquote class="blockquote">
+                  <audio
+        controls
+        src="/media/{{ a.mp3_file}}">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+                  <footer class="blockquote-footer"> {{a.mp3_file}}</footer>
+
+              </blockquote>
+
+
+              </div>
+      {% endfor %}
+
+     </div>
+
+
+
+      <hr>
+
+
+      <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+  View {{book.pdf_file}}
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">{{book.pdf_file}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <embed src="localhost:8000/media/{{book.pdf_file}}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="600px">
+
+     </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+      <h1 class="text-center nav-link btn btn-secondary">Word Meaning</h1>
+      <div class="row addScroll">
+
+      <div class="col-sm-6">
+          <ol>
+              {% for content_list in content_lists|slice:first %}
+
+              <li>{{content_list}}</li>
+              {% endfor %}
+          </ol>
+      </div>
+      <div class="col-sm-6">
+
+           <ol start="{{index}}">
+              {% for content_list in content_lists|slice:second %}
+
+              <li>{{content_list}}</li>
+              {% endfor %}
+          </ol>
+      </div>
+
+  </div>
+{% endblock %}

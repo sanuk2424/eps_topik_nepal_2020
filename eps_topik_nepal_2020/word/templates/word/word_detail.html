@@ -1,0 +1,35 @@
+{% extends 'book/header.html' %}
+{% block title%} {{word.title}}{% endblock %}
+
+{% block body%}
+
+      <div class="card">
+  <div class="card-header text-center text-info">
+    <h1 class="card-title">{{ word.title }}</h1>
+  </div>
+  <div class="card-body">
+      <a class="nav-link btn btn-success" href="/word"> Back </a>
+
+    <p class="card-text">
+      <div class="row addScroll">
+
+      <div class="col-sm-6">
+          <ol>
+              {% for content_list in content_lists|slice:first %}
+
+              <li>{{content_list}}</li>
+              {% endfor %}
+          </ol>
+      </div>
+      <div class="col-sm-6">
+
+           <ol start="{{index}}">
+              {% for content_list in content_lists|slice:second %}
+
+              <li>{{content_list}}</li>
+              {% endfor %}
+          </ol>
+      </div>
+
+  </div>
+{% endblock %}

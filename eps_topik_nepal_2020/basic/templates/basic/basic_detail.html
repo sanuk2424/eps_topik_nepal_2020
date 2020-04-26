@@ -1,0 +1,134 @@
+{% extends 'book/header.html' %}
+{% block title%} {{basic.title}}{% endblock %}
+
+{% block body%}
+
+      <div class="card">
+  <div class="card-header text-center text-info">
+    <h1 class="card-title">{{ basic.title }}</h1>
+  </div>
+  <div class="card-body">
+      <a class="nav-link btn btn-success" href="/basic"> Back </a>
+       <div class="addScroll">
+
+      <pre class="text-secondary" style="font-size:20px;">
+          <p class="card-text">{{ basic.content }}</p>
+      </pre>
+
+           {% if bid == 4 %}
+           <h1 class="text-center text-success">Consonant Vs Single Vowel</h1>
+            <table class="table table-bordered">
+                <thead>
+      <tr>
+           <th>C/V</th>
+          {% for vowel in sv %}
+        <th>{{vowel}}</th>
+          {% endfor%}
+
+      </tr>
+    </thead>
+        <tbody>
+              {% for consonant in sc %}
+                  <tr>
+
+                    <td>{{consonant}}</td>
+                       {% for vowel in sv %}
+                       <td>{{consonant}}
+
+                           {% if vowel == 'ㅗ' or vowel == 'ㅛ' or vowel == 'ㅜ' or vowel == 'ㅠ' or vowel == 'ㅡ' %}
+                           <br>
+                           {% endif%}
+                           {{vowel}}</td>
+                      {% endfor%}
+                  </tr>
+               {% endfor %}
+        </tbody>
+  </table>
+           <h1 class="text-center text-success">Consonant Vs Double Vowel</h1>
+
+<!--      Double vowel vs consonant-->
+            <table class="table table-bordered">
+                <thead>
+      <tr>
+           <th>C/V</th>
+          {% for vowel in dv %}
+        <th>{{vowel}}</th>
+          {% endfor%}
+
+      </tr>
+    </thead>
+        <tbody>
+              {% for consonant in sc %}
+                  <tr>
+
+                    <td>{{consonant}}</td>
+                       {% for vowel in dv %}
+                       <td>{{consonant}}
+                           {% if vowel == 'ㅐ' or vowel == 'ㅔ' or vowel == 'ㅒ' or vowel == 'ㅖ' %}
+                           {{vowel}}
+                           {% else %}
+
+                           {% if vowel == 'ㅟ' %}
+                           ㅣ
+                           <br>
+                           ㅜ
+                           {% endif%}
+
+                           {% if vowel == 'ㅢ' %}
+                           ㅣ
+                           <br>
+                           ㅡ
+
+                           {% endif%}
+
+                           {% if vowel == 'ㅘ' %}
+                           ㅏ
+                           <br>
+                           ㅗ
+
+                           {% endif%}
+
+
+                           {% if vowel == 'ㅚ' %}
+                           ㅣ
+                           <br>
+                           ㅗ
+
+                           {% endif%}
+
+                           {% if vowel == 'ㅙ' %}
+                           ㅐ
+                           <br>
+                           ㅗ
+
+                           {% endif%}
+
+                           {% if vowel == 'ㅝ' %}
+                           ㅓ
+                           <br>
+                           ㅜ
+
+                           {% endif%}
+
+                           {% if vowel == 'ㅞ' %}
+                           ㅔ
+                           <br>
+                           ㅜ
+                           {% endif%}
+
+
+                           {% endif %}
+
+                           </td>
+                      {% endfor%}
+                  </tr>
+               {% endfor %}
+        </tbody>
+  </table>
+
+           {% endif %}
+       </div>
+
+  </div>
+      </div>
+{% endblock %}

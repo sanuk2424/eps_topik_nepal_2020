@@ -1,0 +1,79 @@
+
+{% extends 'book/header.html' %}
+{% block title%} {{title}}{% endblock %}
+
+{% block body%}
+<h1 class="text-center text-light bg-info" style="margin-top:10px;">EPS-TOPIK NEPAL</h1>
+
+<p class="text-center text-muted">
+
+    Welcome to our website EPS-Test of Proficiency in Korean Nepal (EPS TOPIK NEPAL).This is for those who are preparing for EPS TOPIK exam to achieve good position in exam for securing future ahead.
+    </p>
+
+<div style="margin-top:50px;">
+<div class="row">
+    <div class="form-row">
+    {% load static %}
+    <div class="col-md-6">
+        <div  clas="col-md-6">
+              <h3>User already have account!</h3>
+            <p>Please Login here</p>
+            <form method="post" action="/login/signin"> {% csrf_token %}
+      <div class="form-group">
+                    <input class="form-control" type="text" name="username" placeholder="Username" aria-label="Username">
+
+      </div>
+                <div class="form-group">   <input class="form-control" type="password" name="password" placeholder="Password" aria-label="Password">
+    </div>
+                <div class="form-group"><button class="btn btn-outline-success" type="submit">Login</button></div>
+</div>
+
+    </form>
+
+        <div style="width:550px;background-color:white"></div>
+        </div>
+
+
+
+    </div>
+
+    <div class="col-md-6">
+        <h3>Create an User account</h3>
+        <p>It's quick and easy</p>
+        <form action="/login/signup" method="post">
+            {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-6">
+
+      <input type="text" class="form-control" name="firstName" placeholder="Firstname">
+    </div>
+    <div class="form-group col-md-6">
+
+      <input type="text" class="form-control" name="lastName" placeholder="Lastname">
+    </div>
+  </div>
+  <div class="form-group">
+
+    <input type="email" class="form-control" name="email" placeholder="Email">
+  </div>
+            <div class="form-group">
+
+    <input type="text" class="form-control"  name="username" placeholder="Username">
+  </div>
+  <div class="form-group">
+
+    <input type="password" class="form-control" name="password" placeholder="Password">
+  </div>
+
+
+  <button type="submit" class="btn btn-success">Signup</button>
+</form>
+
+    </div>
+</div>
+
+
+</div>
+
+
+{% endblock %}
